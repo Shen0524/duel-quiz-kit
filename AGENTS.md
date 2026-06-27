@@ -73,9 +73,13 @@ window.APP_CONFIG = {
   intro: "首頁說明（可含 <strong> 等 HTML）…",
   trueLabel: "說法正確",  // 左邊選項文字
   falseLabel: "這是謠言",  // 右邊選項文字
-  footer: "頁尾說明…"
+  footer: "頁尾說明…",
+  adminPass: "CHANGE_ME"  // 統計頁「重置統計」按鈕的管理密碼，務必改掉
 };
 ```
+
+> **重置統計按鈕**：統計頁有一顆「🗑 重置統計（管理員）」按鈕，輸入 `adminPass` 後可一鍵清空
+> 本主題的 `stats`/`matches`/`rooms`（換班、重辦活動時用）。密碼是前端檢查，僅防誤觸，非高強度保護。
 
 > `topic` 是資料庫命名空間。多個對決網頁可共用同一個 Firebase，靠不同的 `topic`
 > 把資料放在 `topics/<topic>/` 底下，統計互不混淆。**所以每個主題的 `topic` 一定要不一樣。**

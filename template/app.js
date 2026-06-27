@@ -571,6 +571,28 @@
     });
   }
 
+  // 管理員一鍵重置：清空本主題的統計、對戰記錄與殘留房間（換班時用）
+  function resetStats() {
+    if (!requireFirebase()) return;
+    const correct = CFG.adminPass || "";
+    if (!correct) { toast("尚未在 config.js 設定 adminPass，無法重置"); return; }
+    const pass = window.prompt("請輸入管理密碼以重置統計：");
+    if (pass === null) return;            // 使用者取消
+    if (pass !== correct) { toast("密碼錯誤，未重置"); return; }
+    if (!window.confirm("確定要清除「" + (CFG.title || "本主題") + "」的所有統計與對戰記錄嗎？\n此動作無法復原，建議先截圖保存。")) return;
+    Promise.all([
+      ref("stats").remove(),
+      ref("matches").remove(),
+      ref("rooms").remove()
+    ]).then(() => {
+      toast("✅ 已重置，統計歸零");
+      loadStats();
+    }).catch(err => {
+      console.error(err);
+      toast("重置失敗：" + err.message);
+    });
+  }
+
   /* =========================================================
      清理 & 重置
      ========================================================= */
@@ -602,6 +624,7 @@
     $("btnStats").onclick = loadStats;
     $("navStats").onclick = loadStats;
     $("btnStatsBack").onclick = resetToHome;
+    $("btnResetStats").onclick = resetStats;
 
     $("btnBackHome1").onclick = resetToHome;
     $("btnBackHome2").onclick = resetToHome;
