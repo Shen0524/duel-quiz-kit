@@ -125,7 +125,34 @@ gh api -X POST repos/<owner>/<repo名稱>/pages -f "source[branch]=main" -f "sou
 - **題庫至少 18 題**，否則 15 題挑戰模式會被題庫上限截短。
 - **務必用 http 測**，`file://` 會讓 Firebase 連不上。
 - 部署是**公開 repo**：不要放任何真正的密碼或私密資料。
-- **活動後**：Firebase 測試模式規則約 30 天到期；活動結束建議收緊資料庫規則或刪庫。
+
+## Firebase 安全規則（建議套用，取代測試模式）
+
+預設的「測試模式」任何人可讀寫、且約 30 天後會自動到期鎖死。建議改用本 kit 附的
+[`firebase-database-rules.json`](firebase-database-rules.json)，它用一個 **`config/open` 開關**手動控制，
+且只開放 `topics/` 子樹（其他路徑一律拒絕），較安全：
+
+```json
+{
+  "rules": {
+    "topics": {
+      ".read": "root.child('config/open').val() === true",
+      ".write": "root.child('config/open').val() === true"
+    }
+  }
+}
+```
+
+套用方式（Firebase 主控台）：
+1. **Realtime Database → 規則 Rules** 分頁，貼上上面內容 → 發布。
+2. **資料 Data** 分頁，在根節點建立 `config/open = true`（布林值）。網站這時才會通。
+
+開關控制：
+- **關閉**（活動結束）：把 `config/open` 改成 `false` → 所有對戰與讀寫立即停止。
+- **重新開放**：改回 `true`。
+
+> 若想「關閉對戰但仍能看統計」，把 `.read` 改成 `true`（永遠可讀）、只用 `.write` 那行控制開關即可。
+> 多個主題共用同一個 Firebase 時，這組規則會同時管控所有 `topics/<topic>/`，一次開關全部。
 
 ## 玩法限定
 

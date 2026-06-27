@@ -21,6 +21,9 @@
 
 詳細步驟、出題原則、常見雷請見 [`AGENTS.md`](AGENTS.md)。
 
+> 安全性：建議用本 kit 附的 [`firebase-database-rules.json`](firebase-database-rules.json) 取代 Firebase 測試模式，
+> 靠 `config/open` 開關一鍵開關所有網站（說明見 `AGENTS.md`）。
+
 ## 範例（用本 kit 做出來的網站）
 
 - 食安謠言大對決：<https://shen0524.github.io/food-safety-duel/>

@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "topics": {
+      ".read": "root.child('config/open').val() === true",
+      ".write": "root.child('config/open').val() === true"
+    }
+  }
+}
