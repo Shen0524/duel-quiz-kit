@@ -11,9 +11,16 @@
 - **Google Antigravity / 其他 agent / 人類**：請先讀 `AGENTS.md`，照步驟操作。
 - **Claude Code**：本 kit 另有對應的 Claude Skill（`duel-quiz`），可自動觸發。
 
+## 兩種版本
+
+- `template/`：**雙人對戰**（1v1 比分）
+- `template-multiplayer/`：**多人擂台（Kahoot 式）**（一房多人同步搶答 + 即時排行榜）
+
+兩者用法與題庫格式相同，挑要的那個複製即可。
+
 ## 怎麼用（摘要）
 
-1. 複製 `template/` 成新資料夾
+1. 複製 `template/`（或 `template-multiplayer/`）成新資料夾
 2. 改 `config.js`（品牌 + 獨一無二的 `topic` 命名空間）與 `questions.js`（18～20 題是非題）
 3. 填 `firebase-config.js`（多主題可共用同一個 Firebase）
 4. 用 `python -m http.server` 在 http 上測試（**不能用 `file://`**）

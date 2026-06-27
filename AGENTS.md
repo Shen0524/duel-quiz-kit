@@ -19,12 +19,23 @@
 - **每個新主題只改兩個檔**：`config.js`（品牌與命名空間）和 `questions.js`（題庫）。
 - 另外要填一次 `firebase-config.js`（多個主題可共用同一個 Firebase 專案）。
 
-## 資料夾內容
+## 兩種版本：雙人對戰 vs 多人擂台
+
+本 kit 提供兩套引擎，**用法、題庫格式、設定欄位完全相同**，只差玩法：
+
+| 範本資料夾 | 玩法 | 適用 |
+|---|---|---|
+| `template/` | **雙人對戰**：一房 2 人（房主 vs 對手）1v1 比分 | 兩兩配對、闖關、分組 PK |
+| `template-multiplayer/` | **多人擂台（Kahoot 式）**：一房多人，全場掃同一 QR 同步搶答，即時排行榜，決出冠軍 | 講台帶全場、營隊團康、課堂搶答 |
+
+要做哪種就複製對應的範本資料夾。以下步驟兩者通用（差異會標註）。
+
+## 資料夾內容（兩個範本各自都有這些檔）
 
 ```
-template/
+template/ 或 template-multiplayer/
 ├── index.html        引擎（勿改）
-├── app.js            引擎（勿改）
+├── app.js            引擎（勿改；雙人版與多人版內容不同）
 ├── styles.css        引擎（勿改）
 ├── config.js         主題品牌 + 命名空間（每個主題替換）
 ├── firebase-config.js Firebase 設定（填一次，可跨主題共用）
@@ -36,7 +47,10 @@ template/
 ## 產生一個新主題網站：步驟
 
 ### 步驟 1 — 複製範本
-把 `template/` 整個複製成一個新資料夾，命名建議 `<主題英文>-duel`（例：`fraud-duel`）。
+- 雙人版：複製 `template/` → 新資料夾，命名建議 `<主題英文>-duel`（例：`fraud-duel`）。
+- 多人版：複製 `template-multiplayer/` → 新資料夾，命名建議 `<主題英文>-mp`（例：`fraud-mp`）。
+
+> 同一主題若雙人版、多人版都要做，請給它們**不同的 `topic`**（例如 `fraud` 與 `fraud-mp`），統計才會分開。
 
 ### 步驟 2 — 產生題庫 `questions.js`
 覆寫題庫，格式如下（務必照欄位）：
