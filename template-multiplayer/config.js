@@ -13,5 +13,6 @@ window.APP_CONFIG = {
   trueLabel: "說法正確",
   falseLabel: "這是錯的",
   footer: "多人同房搶答版　·　適合講台帶全場、營隊團康、課堂搶答。<br>掃 QR Code 即可加入，無需安裝任何 App。",
+  masterLabel: "OOO 達人",
   adminPass: "CHANGE_ME"                            // 「重置統計」按鈕的管理密碼，務必改成自己的
 };
