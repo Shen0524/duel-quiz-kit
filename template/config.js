@@ -14,5 +14,6 @@ window.APP_CONFIG = {
   trueLabel: "說法正確",                          // 左邊選項文字
   falseLabel: "這是錯的",                          // 右邊選項文字
   footer: "適合宣導、闖關活動、課堂教學使用。<br>掃 QR Code 即可雙人對戰，無需安裝任何 App。",
+  masterLabel: "OOO 達人",                      // 勝利畫面顯示「OOO 達人就是你！」
   adminPass: "CHANGE_ME"                           // 「重置統計」按鈕的管理密碼，務必改成自己的
 };

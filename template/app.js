@@ -328,7 +328,7 @@
       : (room.host ? room.host.name : "對手");
 
     $("quizProgress").textContent = `第 ${room.current + 1} / ${total} 題`;
-    $("quizCategory").textContent = q.category || "食安";
+    $("quizCategory").textContent = q.category || "題目";
     $("quizClaim").textContent = q.claim;
 
     // 重置選項
@@ -458,7 +458,7 @@
 
     let title, crown, sub;
     if (hs === gs) { title = "平手！"; crown = "🤝"; sub = "勢均力敵，再來一場分高下！"; }
-    else if (myScore > oppScore) { title = "你贏了！"; crown = "🏆"; sub = "食安達人就是你！"; }
+    else if (myScore > oppScore) { title = "你贏了！"; crown = "🏆"; sub = (CFG.masterLabel || "達人") + "就是你！"; }
     else { title = "惜敗"; crown = "💪"; sub = "別氣餒，看看下面的解析再戰一場！"; }
 
     $("resultCrown").textContent = crown;
